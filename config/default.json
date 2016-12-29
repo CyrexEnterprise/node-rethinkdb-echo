@@ -1,0 +1,16 @@
+{
+	"rethinkdb": {
+		"host": "localhost",
+		"port": 28015,
+		"authKey": "",
+		"db": "echoblaster",
+		"silent": true,
+		"min": 8,
+		"max": 16,
+		"timeoutError": 1000
+	},
+	"web": {
+        "host": "localhost",
+		"port": 9700
+	}
+}
