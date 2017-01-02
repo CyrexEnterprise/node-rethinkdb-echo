@@ -10,7 +10,7 @@
 		"timeoutError": 1000
 	},
 	"web": {
-        "host": "10.10.10.193",
+        "host": "localhost",
 		"port": 9700
 	}
 }
