@@ -1,18 +1,33 @@
-body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
-a {
-  color: #00B7FF;
+.container {
+    margin: 10px 0 50px 0;
 }
 
-.copyleft {
-  display:inline-block;
-  transform: rotate(180deg);
+#messages {
+    height: 80%;
+    overflow: auto;
 }
 
-div.jumbotron {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#controls {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    margin: 0 15px 0 0;
+    padding-top: 10px;
+    background: white;
+}
+
+messages {
+    overflow: hidden;
+    max-height: 50%;
+}
+
+span.nickname {
+    font-weight: bold;
 }
