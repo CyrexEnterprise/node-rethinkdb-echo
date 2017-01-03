@@ -17,20 +17,27 @@ function App(url){
             li.appendChild(spanNickname);
             li.appendChild(spanMessage);
 
-            $("#messages").append(li);
-            $("html, body").animate({ scrollTop: $(document).height() }, 0);
+            var messagesElement = document.getElementById('messages');
+            messagesElement.appendChild(li);
+
+            var bodyElement = document.getElementsByTagName('body');
+            if( bodyElement.length )
+                bodyElement[0].scrollTop = bodyElement[0].scrollHeight
         }
     });
 
     var sendMessage = function(message){
-        $.post( "/api/v1/messages/", { Author: nickname, Room: "public", Text: message })
-         .done(function( data ) {
-         })
-         .fail(function( data ) {
-             console.error(data.responseText);
-         })
-         .always(function(data) {
-         });
+        var obj = { Author: nickname, Room: "public", Text: message };
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if( xhttp.readyState === XMLHttpRequest.DONE )
+                if( xhttp.status !== 200 )
+                    console.error(xhttp.status, xhttp.responseText);
+        };
+
+        xhttp.open("POST", "/api/v1/messages/", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(obj));
     }
 
     var checkNickname = function() {
@@ -44,25 +51,24 @@ function App(url){
             show: true
         };
 
-        $('#echoblaster-nickname-modal').modal(options);
-        $('#echoblaster-nickname-modal').on('hidden.bs.modal', function (e) {
+        function enterName(e) {
+
+            if( e.which && e.which !== 13 )
+                return;
+
             var _nickname = $(this).find("#nickname-name").val();
             if( _nickname )
                 $.cookie("echoblaster-nickname", btoa(_nickname));
+
             checkNickname();
-        });
+        }
+
+        $('#echoblaster-nickname-modal').modal(options);
+        $('#echoblaster-nickname-modal').on('hide.bs.modal', enterName);
+        $('#nickname-form').on('keypress', enterName);
     };
 
     checkNickname();
-
-    var postMessage = function(event) {
-        event.preventDefault();
-        if (event.keyCode == 13){
-            var txt = $(this);
-            sendMessage(txt.val());
-            txt.val("");
-        }
-    }
 
     document.getElementById("echoblaster-message-text").addEventListener("keyup", function(event) {
         event.preventDefault();
