@@ -3,12 +3,12 @@
 /**
  * Module dependencies.
  */
-const app = require('./lib/app');
+const app = require('../lib/app');
 const debug = require('debug')('node-rethinkdb-echo:server');
 const http = require('http');
 const config = require('config');
-const log = require('./lib/logger').log('www');
-const socket = require('./lib/socket');
+const log = require('../lib/logger').log('www');
+const socket = require('../lib/socket');
 
 /**
  * Get port from environment and store in Express.

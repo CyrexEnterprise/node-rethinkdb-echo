@@ -22,8 +22,11 @@ There is only a single table in the RethinkDB storing all the received messages.
 Everyone is a publishing messages and everyone is subscribed to receive the messages.
 
 The server is made with Node.js and Express (semi-based on https://www.npmjs.com/package/express-generator).
+
 The web sockets are managed by socket.io (http://socket.io/).
-The rest of the realtime magic is RethinkDB.
+
+The rest of the realtime magic is RethinkDB. To connect and interact with RethinkDB its used the Thinky ORM (https://thinky.io/).
+
 
 
 ## Installation and configuration
@@ -38,3 +41,5 @@ The rest of the realtime magic is RethinkDB.
   $ npm install
   $ node index.js
 ```
+
+The HTTP interface is running by default in the TCP port 9700

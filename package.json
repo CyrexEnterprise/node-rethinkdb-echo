@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node bin/index.js",
+    "test": "mocha test/*"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -19,5 +20,9 @@
     "sonic-async": "^0.5.11",
     "thinky": "^2.3.8",
     "winston": "^2.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.1.2"
   }
 }
