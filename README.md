@@ -1,4 +1,4 @@
-# Single channel chat RethinkDB
+# Single channel chat on top of RethinkDB
 
 This is an example how easy is to prototype a real time application with RethinkDB.
 Within a few hours I was able to build a fully functional single channel chat.
