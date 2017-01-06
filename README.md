@@ -12,7 +12,7 @@ Just type your nick name and start messaging.
 
 The server is already compatible with multiple channel, but the frontend is not yet ready! What to help? :)
 
-## How it done
+## How its done
 
 The application functionality is made arround the RethinkDB change feeds capability.
 It can be used to implement a PubSub, and thats exactly what it's being done here.
@@ -25,14 +25,12 @@ The server is made with Node.js and Express (semi-based on https://www.npmjs.com
 The web sockets are managed by socket.io (http://socket.io/).
 The rest of the realtime magic is RethinkDB.
 
-
 ## Installation and configuration
 
 - Install dependencies:
 
-  RethinkDB 2.3.5: https://www.rethinkdb.com/docs/install/
-  
-  Node.js 6.9.x: https://nodejs.org/en/download/
+  - RethinkDB 2.3.5: https://www.rethinkdb.com/docs/install/
+  - Node.js 6.9.x: https://nodejs.org/en/download/
 
 - Clone repository and run:
 ```bash
