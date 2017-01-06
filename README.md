@@ -31,6 +31,7 @@ The rest of the realtime magic is RethinkDB.
 - Install dependencies:
 
   RethinkDB 2.3.5: https://www.rethinkdb.com/docs/install/
+  
   Node.js 6.9.x: https://nodejs.org/en/download/
 
 - Clone repository and run:
