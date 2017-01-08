@@ -20,11 +20,11 @@ describe('Check if there is a RethinkDB running and could do the ORM read and wr
     }
   });
 
-  it('Get a list of messages in the DB.', function (done) {
+  it('Get a list of messages in public channel from the DB.', function (done) {
     try {
       let messages = require('../lib/models/messages');
 
-      messages.list((err, messages) => {
+      messages.list('public', (err, messages) => {
         if (err) {
           return done(err);
         }
