@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+// Module dependencies.
 const app = require('../lib/app');
 const debug = require('debug')('node-rethinkdb-echo:server');
 const http = require('http');
@@ -10,20 +8,14 @@ const config = require('config');
 const log = require('../lib/logger').log('www');
 const socket = require('../lib/socket');
 
-/**
- * Get port from environment and store in Express.
- */
+ // Get port from environment and store in Express.
 const port = normalizePort(process.env.PORT || config.get('web.port'));
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+ // Create HTTP server.
 const server = http.createServer(app);
 
-/**
- *  Create the Socket IO server
- */
+ // Create the Socket IO server
 socket(server, (err, res) => {
   if (err) {
     log.error(err);
@@ -31,16 +23,13 @@ socket(server, (err, res) => {
     log.info('Socket.io initialized successefully!');
   }
 });
-/**
- * Listen on provided port, on all network interfaces.
- */
+
+// Listen on provided port, on all network interfaces.
 server.listen(port, '0.0.0.0');
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// Normalize a port into a number, string, or false.
 function normalizePort (val) {
   const port = parseInt(val, 10);
 
@@ -57,9 +46,7 @@ function normalizePort (val) {
   return false;
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
+// Event listener for HTTP server "error" event.
 function onError (error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -84,9 +71,7 @@ function onError (error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
+// Event listener for HTTP server "listening" event.
 function onListening () {
   const addr = server.address();
   const bind = typeof addr === 'string'
