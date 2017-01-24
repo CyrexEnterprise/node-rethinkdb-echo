@@ -3,6 +3,11 @@ function App (url) {
   var socket = io.connect(url);
 
   socket.on('messages', function (message) {
+    showMessages(message);
+  });
+
+  var showMessages = function(message) {
+    console.log("---", message);
     var messages = typeof message === 'object' && message instanceof Array ? message : [message];
 
     for (var i = (messages.length - 1); i >- 1; i--) {
@@ -24,7 +29,7 @@ function App (url) {
         bodyElement[0].scrollTop = bodyElement[0].scrollHeight;
       }
     }
-  });
+  };
 
   var sendMessage = function (message) {
     var obj = { Author: nickname, Room: 'public', Text: message };
@@ -32,6 +37,7 @@ function App (url) {
     xhttp.onreadystatechange = function() {
       if (xhttp.readyState === XMLHttpRequest.DONE) {
         if (xhttp.status !== 200) {
+          showMessages({Text:"Pssst something wents wrong: "+ JSON.parse(xhttp.responseText).error, Author: nickname});
           console.error(xhttp.status, xhttp.responseText);
         }
       }
@@ -42,10 +48,10 @@ function App (url) {
     xhttp.send(JSON.stringify(obj));
   }
 
-  var checkNickname = function() {
+  var checkNickname = function(force) {
 
     window.nickname = atob($.cookie('echoblaster-nickname') || '');
-    if (nickname) {
+    if (nickname && !force) {
       return;
     }
 
@@ -86,5 +92,9 @@ function App (url) {
     var txt = $('#echoblaster-message-text');
     sendMessage(txt.val());
     txt.val('');
+  });
+  document.getElementById('echoblaster-changenick').addEventListener('click', function (event) {
+    event.preventDefault();
+    checkNickname(true);
   });
 }
